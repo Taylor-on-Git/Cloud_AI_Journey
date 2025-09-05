@@ -1,4 +1,4 @@
-# 🌩️ Cloud + AI Journey
+#  Cloud + AI Journey
 
 Welcome to my Cloud + AI Engineer learning journey   
 
