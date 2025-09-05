@@ -7,7 +7,7 @@ This repository documents my progress as I transition from a mechanical backgrou
 ---
 
 ## What’s Inside
-- `Hello.py` → my first Python program (Day 1 ✅)  
+- `Hello.py` → my first Python program (Day 1)  
 - Weekly commits as I progress through my **52-week Cloud + AI Engineer plan**  
 - Projects will include:
   - Python automation scripts  
@@ -26,7 +26,7 @@ This repository documents my progress as I transition from a mechanical backgrou
 ---
 
 ## Progress Tracker
-- **Day 1:** ✅ Hello World in Python  
+- **Day 1:** Hello World in Python  
 - **Next Up:** Automating small tasks with Python scripts  
 
 I’ll update this repo regularly with new projects, notes, and code as I learn.  
