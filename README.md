@@ -34,8 +34,8 @@ I’ll update this repo regularly with new projects, notes, and code as I learn.
 ---
 
 ## Connect
-- GitHub: [Taylor-on-Git](https://github.com/YourGitHubUsername)  
-- LinkedIn: [ https://www.linkedin.com/in/taylor-gilmour-47259a320/]  
+- GitHub: [Taylor-on-Git](https://github.com/Taylor-on-Git)  
+- LinkedIn: [Taylor](https://www.linkedin.com/in/yourusername/)  
 
 ---
 
