@@ -1,4 +1,4 @@
-#  Cloud + AI Journey
+#  Cloud + AI Journey (52 weeks)
 
 Welcome to my Cloud + AI Engineer learning journey   
 
@@ -26,8 +26,10 @@ This repository documents my progress as I transition from a mechanical backgrou
 ---
 
 ## Progress Tracker
-- **Day 1:** Hello World in Python  
-- **Next Up:** Automating small tasks with Python scripts  
+- **Week 1:** Python basics, Git setup → `hello.py`, cipher project, README updates  
+- **Week 2:** Python data structures → CSV cleaner, file organizer  
+- **Week 3:** Linux & shell basics → `linux_basics.md` cheat sheet  
+- **Week 4:** Git fluency → PR opened & merged, Git 101 notes 
 
 I’ll update this repo regularly with new projects, notes, and code as I learn.  
 
@@ -39,4 +41,4 @@ I’ll update this repo regularly with new projects, notes, and code as I learn.
 
 ---
 
-_More updates to follow._
+_More updates to follow. This repository will serve as proof of work — every week adds commits, projects, and documentation until I reach Cloud + AI Engineer readiness._
