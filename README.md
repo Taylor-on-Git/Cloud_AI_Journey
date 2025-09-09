@@ -26,6 +26,7 @@ This repository documents my progress as I transition from a mechanical backgrou
 ---
 
 ## Progress Tracker
+- **Day 5:** Git Branching + PR practice
 - **Week 1:** Python basics, Git setup → `hello.py`, cipher project, README updates  
 - **Week 2:** Python data structures → CSV cleaner, file organizer  
 - **Week 3:** Linux & shell basics → `linux_basics.md` cheat sheet  
