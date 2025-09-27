@@ -1,3 +1,22 @@
+"""
+api_fetcher.py
+
+A script to fetch Pokémon data from the PokeAPI (https://pokeapi.co/).
+
+Current behavior:
+- Asks the user for a Pokémon name
+- Calls the PokeAPI with that name
+- If found, prints details (name, ID, height, weight, and types)
+- If not found, shows a friendly error message
+
+Usage:
+    python api_fetcher.py
+
+Notes:
+- Requires the `requests` library (install with `pip install requests`)
+- Demonstrates basic API requests and JSON handling in Python
+"""
+
 import requests # for API calls
 
 # Ask the user for a pokemon name
