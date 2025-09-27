@@ -17,20 +17,20 @@ Notes:
 - Demonstrates basic API requests and JSON handling in Python
 """
 
-import requests # for API calls
+import requests  # Library for making HTTP requests
 
-# Ask the user for a pokemon name
-pokemon = input("Enter a pokemon name: ").strip().lower()
+# Ask the user for a Pokémon name
+pokemon = input("Enter a Pokémon name: ").strip().lower()
 
-# Build the API URL
+# Build the API URL dynamically with the user input
 URL = f"https://pokeapi.co/api/v2/pokemon/{pokemon}"
 
 # Make the GET request
 response = requests.get(URL)
 
-# Check if the request was successful
+# Check if the request was successful (HTTP 200 means OK)
 if response.status_code == 200:
-    data = response.json()  # convert JSON response into a python dictionary
+    data = response.json()  # Convert JSON response into a Python dictionary
 
     # Extract key information
     name = data["name"]
@@ -39,7 +39,7 @@ if response.status_code == 200:
     weight = data["weight"]
     types = [t["type"]["name"] for t in data["types"]]
 
-    # Print the information
+    # Print the information neatly
     print(f"Name: {name}")
     print(f"ID: {poke_id}")
     print(f"Height: {height}")
@@ -47,4 +47,4 @@ if response.status_code == 200:
     print(f"Types: {', '.join(types)}")
 
 else:
-    print("Pokemon not found. Please check the name and try again.")
+    print("Pokémon not found. Please check the name and try again.")
