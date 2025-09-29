@@ -40,7 +40,7 @@ I’ll update this repo regularly with new projects, notes, and code as I learn.
 
 ### Week 1 Summary
 
-#### ✅ Wins
+#### git Wins
 - Set up development environment: installed Python 3.13, Git, VS Code  
 - Created first repo: `Cloud_AI_Journey` (moved out of OneDrive into `C:\Dev`)  
 - Installed essential VS Code extensions (Python, Jupyter, GitLens, etc.)  
@@ -48,36 +48,36 @@ I’ll update this repo regularly with new projects, notes, and code as I learn.
 - Created and polished `README.md`  
 - Posted about the start of my journey on LinkedIn  
 
-#### ❌ Misses
+####  Misses
 - No major misses — first week was mostly setup and environment  
 
-#### 🚧 Blockers
+####  Blockers
 - None — just learning the Git/GitHub workflow  
 
-#### 🎯 Plan for Week 2
+####  Plan for Week 2
 - Begin creating small Python scripts (file renamer, CSV parser, API fetcher)  
 - Practice daily commits and GitHub pushes  
 - Start logging blockers/fixes as they come up  
 
 ### Week 2 Summary
 
-#### ✅ Wins
+####  Wins
 - Created and committed 3 Python scripts (file renamer, CSV parser, Pokémon API fetcher)  
 - Got more confident with Git basics (add, commit, push, commit history)  
 - Added inline comments and docstrings → portfolio-ready code  
 - Solved real blockers (syntax errors, indentation issues, permission errors, repo clutter)  
 - Pulled live data from PokéAPI 🎉  
 
-#### ❌ Misses
+####  Misses
 - Lost ~10 days due to hardware setup + holiday  
 - Extra time fixing repo clutter  
 
-#### 🚧 Blockers
+####  Blockers
 - Windows permissions blocking file deletion (fixed with `takeown` + PowerShell admin)  
 - Python indentation + syntax errors (`else:` issue)  
 - Repo clutter from cloning inside itself  
 
-#### 🎯 Plan for Week 3
+####  Plan for Week 3
 - Make scripts “talk” (CSV of Pokémon → API fetcher)  
 - Practice Git branching (create branch, merge PR)  
 - Update README with script explanations  
