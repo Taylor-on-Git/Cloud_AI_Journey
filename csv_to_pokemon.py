@@ -1,104 +1,104 @@
 """
-csv_to_pokemon.py
+csv_to_pokemon.py (enhanced)
 
-A script that reads a list of Pokémon names from a CSV file,
-queries the PokeAPI for details (ID, height, weight, and types),
-and writes the enriched data into a new CSV.
-
-Current behavior:
-- Input: `data.csv` with at least a "name" column
-- For each Pokémon name, call the PokeAPI
-- Write results into `pokemon_data.csv` (includes name, ID, height, weight, and types)
-- Print logs to track progress (OK or MISS)
+Reads Pokémon from a CSV (default: data.csv), fetches details from PokeAPI,
+writes results to pokemon_data.csv and failures to pokemon_errors.csv.
 
 Usage:
-    python csv_to_pokemon.py
+    python csv_to_pokemon.py --input data.csv --output pokemon_data.csv --errors pokemon_errors.csv
 
 Notes:
-- Requires the `requests` library (`pip install requests`)
-- Demonstrates CSV file handling and API integration
+- Keeps any extra input columns (e.g., nickname) in the output
+- Handles network errors + 404s
 """
 
 import csv
+import argparse
+import time
 import requests
+from typing import Dict, Optional
 
-# Input and output CSV filenames
-INPUT = "data.csv"
-OUTPUT = "pokemon_data.csv"
-
-
-def fetch_pokemon(name: str):
-    """
-    Fetch data about a Pokémon from the PokeAPI.
-
-    Args:
-        name (str): The Pokémon name (case-insensitive)
-
-    Returns:
-        dict or None: Dictionary with Pokémon details if found,
-                      otherwise None
-    """
+def fetch_pokemon(name: str, retries: int = 2, delay: float = 0.5) -> Optional[Dict]:
+    """Fetch a Pokémon dict from PokeAPI; return None on failure."""
     url = f"https://pokeapi.co/api/v2/pokemon/{name.lower().strip()}"
-    try:
-        r = requests.get(url, timeout=10)  # make API call with timeout
-        if r.status_code != 200:  # return None if Pokémon not found
-            return None
-        data = r.json()
-        types = [t["type"]["name"] for t in data.get("types", [])]
-        return {
-            "name": data.get("name", name),
-            "id": data.get("id", ""),
-            "height": data.get("height", ""),
-            "weight": data.get("weight", ""),
-            "types": ", ".join(types),
-        }
-    except requests.RequestException:
-        return None
-
+    for attempt in range(retries + 1):
+        try:
+            r = requests.get(url, timeout=10)
+            if r.status_code == 200:
+                data = r.json()
+                types = [t["type"]["name"] for t in data.get("types", [])]
+                return {
+                    "name": data.get("name", name),
+                    "id": data.get("id", ""),
+                    "height": data.get("height", ""),
+                    "weight": data.get("weight", ""),
+                    "types": ", ".join(types),
+                }
+            elif r.status_code == 404:
+                return None
+            # transient server error; retry
+        except requests.RequestException:
+            pass
+        if attempt < retries:
+            time.sleep(delay)
+    return None
 
 def main():
-    """
-    Main function:
-    - Read Pokémon names from `data.csv`
-    - Call `fetch_pokemon` for each
-    - Save results into `pokemon_data.csv`
-    """
-    rows_out = []  # store enriched Pokémon data here
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--input", default="data.csv")
+    parser.add_argument("--output", default="pokemon_data.csv")
+    parser.add_argument("--errors", default="pokemon_errors.csv")
+    args = parser.parse_args()
 
-    # Open the input CSV
-    with open(INPUT, newline="", encoding="utf-8") as f:
+    successes = []
+    failures = []
+
+    with open(args.input, newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
-
-        # Ensure there’s a 'name' column
-        if "name" not in reader.fieldnames:
-            print("ERROR: data.csv must have a 'name' column.")
+        if "name" not in (reader.fieldnames or []):
+            print("ERROR: input CSV must contain a 'name' column.")
             return
 
-        # Loop through each row in data.csv
+        input_headers = reader.fieldnames  # keep any extra columns
+
         for row in reader:
-            poke = row.get("name", "").strip()
-            if not poke:
-                continue  # skip empty rows
-
-            info = fetch_pokemon(poke)
+            raw_name = (row.get("name") or "").strip()
+            if not raw_name:
+                continue
+            info = fetch_pokemon(raw_name)
             if info:
-                print(f"OK: {poke}")  # log successful fetch
-                rows_out.append(info)
+                # merge API info with original row (pass-through extras)
+                merged = {**row, **info}
+                successes.append(merged)
+                print(f"OK: {raw_name}")
             else:
-                print(f"MISS: {poke} (not found)")
+                failures.append({"name": raw_name, "reason": "not found or network error"})
+                print(f"MISS: {raw_name}")
 
-    # Write output file if results exist
-    if rows_out:
-        with open(OUTPUT, "w", newline="", encoding="utf-8") as g:
-            writer = csv.DictWriter(
-                g, fieldnames=["name", "id", "height", "weight", "types"]
-            )
+    # Build output headers = pass-through input + guaranteed API fields (dedup)
+    api_fields = ["name", "id", "height", "weight", "types"]
+    out_headers = []
+    seen = set()
+    for h in (input_headers or []) + api_fields:
+        if h not in seen:
+            out_headers.append(h)
+            seen.add(h)
+
+    if successes:
+        with open(args.output, "w", newline="", encoding="utf-8") as g:
+            writer = csv.DictWriter(g, fieldnames=out_headers)
             writer.writeheader()
-            writer.writerows(rows_out)
-        print(f"Wrote {len(rows_out)} rows to {OUTPUT}")
+            writer.writerows(successes)
+        print(f"Wrote {len(successes)} rows → {args.output}")
     else:
-        print("No results written.")
+        print("No successful rows to write.")
 
+    if failures:
+        with open(args.errors, "w", newline="", encoding="utf-8") as e:
+            writer = csv.DictWriter(e, fieldnames=["name", "reason"])
+            writer.writeheader()
+            writer.writerows(failures)
+        print(f"Wrote {len(failures)} errors → {args.errors}")
 
 if __name__ == "__main__":
     main()
