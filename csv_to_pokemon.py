@@ -1,5 +1,5 @@
 """
-csv_to_pokemon.py (with error logging)
+csv_to_pokemon.py (with error logging + retries)
 
 A script that reads a list of Pokémon names from a CSV file,
 queries the PokeAPI for details (ID, height, weight, and types),
@@ -8,6 +8,7 @@ and writes the enriched data into a new CSV.
 Enhancements:
 - Successful Pokémon go into `pokemon_data.csv`
 - Failed lookups (e.g. typos or not found) go into `pokemon_errors.csv`
+- Retries network errors before failing
 - Console shows progress (OK or MISS)
 
 Usage:
@@ -16,10 +17,10 @@ Usage:
 Notes:
 - Input file must have a "name" column (default: data.csv)
 - Requires the `requests` library (`pip install requests`)
-- Demonstrates CSV handling, API calls, and error logging in Python
 """
 
 import csv
+import time
 import requests
 
 # Input and output CSV filenames
@@ -28,32 +29,40 @@ OUTPUT = "pokemon_data.csv"
 ERRORS = "pokemon_errors.csv"   # new file for failed lookups
 
 
-def fetch_pokemon(name: str):
+def fetch_pokemon(name: str, retries: int = 2, delay: float = 0.5):
     """
     Fetch data about a Pokémon from the PokeAPI.
+    Retries on network errors before giving up.
 
     Args:
         name (str): Pokémon name (case-insensitive)
+        retries (int): Number of retry attempts (default 2)
+        delay (float): Seconds to wait between retries
 
     Returns:
         dict or None: Pokémon details if found, otherwise None
     """
     url = f"https://pokeapi.co/api/v2/pokemon/{name.lower().strip()}"
-    try:
-        r = requests.get(url, timeout=10)
-        if r.status_code != 200:
-            return None
-        data = r.json()
-        types = [t["type"]["name"] for t in data.get("types", [])]
-        return {
-            "name": data.get("name", name),
-            "id": data.get("id", ""),
-            "height": data.get("height", ""),
-            "weight": data.get("weight", ""),
-            "types": ", ".join(types),
-        }
-    except requests.RequestException:
-        return None
+    for attempt in range(retries + 1):
+        try:
+            r = requests.get(url, timeout=10)
+            if r.status_code == 200:
+                data = r.json()
+                types = [t["type"]["name"] for t in data.get("types", [])]
+                return {
+                    "name": data.get("name", name),
+                    "id": data.get("id", ""),
+                    "height": data.get("height", ""),
+                    "weight": data.get("weight", ""),
+                    "types": ", ".join(types),
+                }
+            elif r.status_code == 404:
+                return None  # Pokémon not found
+        except requests.RequestException:
+            pass  # transient network error, will retry
+        if attempt < retries:
+            time.sleep(delay)
+    return None
 
 
 def main():
