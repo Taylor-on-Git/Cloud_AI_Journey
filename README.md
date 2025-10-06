@@ -78,11 +78,43 @@ I’ll update this repo regularly with new projects, notes, and code as I learn.
 - Python indentation + syntax errors (`else:` issue)  
 - Repo clutter from cloning inside itself  
 
-####  Plan for Week 3
-- Make scripts “talk” (CSV of Pokémon → API fetcher)  
-- Practice Git branching (create branch, merge PR)  
-- Update README with script explanations  
-- Aim for daily micro-commits  
+### Week 3 Summary
+
+#### Wins
+- Built an end-to-end Pokémon data pipeline:
+  - `csv_to_pokemon.py` → reads names from CSV, calls PokéAPI, writes `pokemon_data.csv`
+  - Error logging to `pokemon_errors.csv` (missed/typo’d names)
+  - `pokemon_type_analyzer.py` → counts types from output CSV
+- Learned key Python tools/patterns:
+  - `requests` + `.json()` for APIs
+  - `csv` for reading/writing files
+  - `collections.Counter` for quick tallies
+  - `ast.literal_eval` to safely parse list strings (e.g., "['grass','poison']")
+- Git confidence boost: branched, resolved conflicts, and pushed cleanly
+
+#### Misses
+- A few rebase/merge tangles that slowed momentum
+- Spent time on local experiments not meant for GitHub (by design, but time-consuming)
+
+#### Blockers
+- Merge conflict in `csv_to_pokemon.py` (resolved by choosing simpler error-logging version)
+- Indentation/syntax hiccups (missing colons, wrong indent levels)
+- “Writer not defined” / write-while-read issues (fixed by separating read & write phases)
+
+#### Plan for Week 4
+- Start Linux & shell basics (Windows Terminal/PowerShell + WSL if needed)
+  - Files/dirs: `ls`, `pwd`, `cd`, `mkdir`, `rm`, `cp`, `mv`
+  - Viewing/searching: `cat`, `less`, `head`, `tail -f`, `grep`
+  - Permissions & exec: `chmod`, `whoami`
+  - History & chaining: `history`, `|`, `>`, `>>`
+- Create a **linux_basics.md** cheat sheet in the repo:
+  - Each command with 1–2 line explanation + example
+- Practice mini tasks:
+  - Parse a log file with `grep` + `wc -l`
+  - Batch-rename files with a one-liner
+  - Write a tiny shell script (`.sh`) and run it
+- Keep daily micro-commits (notes + small exercises)
+
 
 ---
 
