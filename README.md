@@ -115,6 +115,33 @@ I’ll update this repo regularly with new projects, notes, and code as I learn.
   - Write a tiny shell script (`.sh`) and run it
 - Keep daily micro-commits (notes + small exercises)
 
+### Week 4 Summary
+
+#### Wins
+- Installed and configured Ubuntu through WSL on Windows.
+- Practiced foundational Linux commands:
+  - Navigation: `ls`, `pwd`, `cd`, `mkdir`, `rm`
+  - File management: `touch`, `echo`, `cat`, `rm`
+  - Permissions and execution: `chmod` (symbolic + numeric modes)
+- Learned to interpret permission strings (e.g., `-rwxr--r--`) and their numeric equivalents (`744`).
+- Took detailed notes and screenshots while testing each command.
+
+#### Misses
+- Only completed one focused Linux session due to limited time.
+- Didn’t yet reach ownership, `sudo`, or process management commands.
+
+#### Blockers
+- Minor confusion switching between PowerShell and WSL terminal environments.
+- Time limitations across the week (reduced total learning hours).
+
+#### Plan for Week 5
+- Continue Linux Fundamentals (Part 2) + start Intro to Shell Scripting
+- Ownership and access control: `chown`, `sudo`, `groups`, `whoami`
+- Process management: `ps`, `top`, `kill`, `bg`, `fg`, `sleep`
+- Redirection and piping review: `>`, `>>`, `|`, `grep`, `wc`, `sort`
+- Write and execute a simple `.sh` shell script to automate a task
+- Create a `linux_basics.md` cheat sheet summarizing all commands learned so far
+- Commit cheat sheet and script to GitHub with clear commit messages
 
 ---
 
