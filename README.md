@@ -143,6 +143,37 @@ I’ll update this repo regularly with new projects, notes, and code as I learn.
 - Create a `linux_basics.md` cheat sheet summarizing all commands learned so far
 - Commit cheat sheet and script to GitHub with clear commit messages
 
+### Week 5 Summary
+
+#### Wins
+- Fully configured and re-installed Ubuntu WSL after earlier setup issues.
+- Learned and practiced file ownership, permissions, and user/group management (chmod, chown, usermod, groups).
+- Created and debugged multiple users (sam, taylor) and handled access-denied scenarios.
+- Wrote and executed a full Bash script that:
+  - Read user input
+  - Used date command substitution (%A, %B, %d)
+  - Added logic for weekends vs weekdays
+  - Logged outputs with timestamps.
+- Understood execution bits (-rwxr-xr-x) and variable expansion.
+- Built strong intuition for Linux file structure, privileges, and command workflow.
+
+#### Misses
+- Minor delays from Ubuntu password reset and user access issues.
+- Didn’t log daily notes in the tracking sheet (only GitHub summary).
+- Haven’t yet combined Linux automation with external tools (next step).
+
+#### Blockers
+- Repeated “access denied” errors when adding sam to dev_project (resolved via correct group permissions).
+- Confusion over directory context (/home vs /home/taylor) — now clarified.
+- Small delays caused by environment reinstalls and resets.
+
+#### Plan for Week 6
+- Learn AWS CLI and Azure CLI basics (installation, configuration, test commands).
+- Automate a simple cloud task using a shell script, e.g. list S3 buckets or Azure storage containers.
+- Understand environment variables and credentials in shell scripting.
+- Push your first automation script to GitHub with an explanatory README section.
+- Continue reinforcing Linux habits: file redirection, logging, and error handling.
+
 ---
 
 ## Connect
