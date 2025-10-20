@@ -147,14 +147,14 @@ I’ll update this repo regularly with new projects, notes, and code as I learn.
 
 #### Wins
 - Fully configured and re-installed Ubuntu WSL after earlier setup issues.
-- Learned and practiced file ownership, permissions, and user/group management (chmod, chown, usermod, groups).
-- Created and debugged multiple users (sam, taylor) and handled access-denied scenarios.
+- Learned and practiced file ownership, permissions, and user/group management (`chmod`, `chown`, `usermod`, `groups`).
+- Created and debugged multiple users (`sam`, `taylor`) and handled access-denied scenarios.
 - Wrote and executed a full Bash script that:
   - Read user input
-  - Used date command substitution (%A, %B, %d)
+  - Used `date` command substitution (`%A`, `%B`, `%d`)
   - Added logic for weekends vs weekdays
   - Logged outputs with timestamps.
-- Understood execution bits (-rwxr-xr-x) and variable expansion.
+- Understood execution bits (`-rwxr-xr-x`) and variable expansion.
 - Built strong intuition for Linux file structure, privileges, and command workflow.
 
 #### Misses
@@ -163,8 +163,8 @@ I’ll update this repo regularly with new projects, notes, and code as I learn.
 - Haven’t yet combined Linux automation with external tools (next step).
 
 #### Blockers
-- Repeated “access denied” errors when adding sam to dev_project (resolved via correct group permissions).
-- Confusion over directory context (/home vs /home/taylor) — now clarified.
+- Repeated “access denied” errors when adding `sam` to `dev_project` (resolved via correct group permissions).
+- Confusion over directory context (`/home` vs `/home/taylor`) — now clarified.
 - Small delays caused by environment reinstalls and resets.
 
 #### Plan for Week 6
