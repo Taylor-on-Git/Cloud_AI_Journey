@@ -174,6 +174,58 @@ I’ll update this repo regularly with new projects, notes, and code as I learn.
 - Push your first automation script to GitHub with an explanatory README section.
 - Continue reinforcing Linux habits: file redirection, logging, and error handling.
 
+### Week 6 Summary
+
+After taking an extra week to regroup and process everything from Week 5, I used this period to consolidate what I’d learned about Linux automation and apply that foundation to AWS CLI.  
+The short gap helped me slow down, review my previous notes, and focus on understanding *why* commands work instead of just running them.  
+This week marks my first real step into cloud automation — connecting local shell scripts to AWS.
+
+---
+
+#### Wins
+- Installed and configured **AWS CLI v2** successfully on Ubuntu.  
+- Created and verified an **IAM user** with Access Key and Secret Key; confirmed connection using `aws sts get-caller-identity`.  
+- Set default region/output and linked AWS CLI to the `learn` profile (also exported it as default).  
+- Enabled **billing alerts** and a **$1 monthly budget** for cost protection.  
+- Practiced core commands:  
+  - `aws s3 ls` → list S3 buckets  
+  - `aws ec2 describe-instances` → confirm no EC2 instances  
+  - `aws iam list-account-aliases` → verify account details  
+- Wrote and executed a **shell automation script** that lists all S3 buckets, timestamps the output, and logs results in `~/aws_logs`.  
+- Confirmed the script works end-to-end and keeps logs for repeatability.  
+- Gained practical understanding of how AWS CLI communicates with IAM credentials and regions.  
+
+---
+
+#### Misses
+- Momentum dipped during the catch-up week; needed extra time to review and process material.  
+- Didn’t yet complete the extended mini-project (S3 inventory CSV).  
+- AWS and Linux notes remain unorganized; plan to rewrite them physically before digitizing.  
+
+---
+
+#### Blockers
+- Confusion between profiles and default credential context (resolved by exporting `AWS_PROFILE=learn`).  
+- Minor command-line navigation issues when AWS CLI paged results into `less` (resolved with `q`).  
+- Overwhelm from large new concepts — currently managing this with a structured catch-up week.  
+
+---
+
+### Plan for Week 7
+- Finish the **S3 inventory mini-project** (CSV report + optional upload).  
+- Consolidate handwritten notes into structured folders: `Python/`, `Linux/`, `AWS/`, etc.  
+- Commit the organized notes and scripts to GitHub.  
+- Re-run previous automation scripts to reinforce CLI confidence.  
+- Begin exploring **EC2 basics** and understand instance lifecycle commands.  
+
+---
+
+#### Reflection
+This two-week window reminded me that consistency matters more than speed.  
+Pausing to understand each layer — Linux, automation, AWS CLI — is what will make later projects easier to scale.  
+The goal for the next phase isn’t to rush ahead, but to deepen my comprehension and regain steady weekly momentum.
+
+
 ---
 
 ## Connect
