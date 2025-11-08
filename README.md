@@ -225,6 +225,51 @@ This two-week window reminded me that consistency matters more than speed.
 Pausing to understand each layer — Linux, automation, AWS CLI — is what will make later projects easier to scale.  
 The goal for the next phase isn’t to rush ahead, but to deepen my comprehension and regain steady weekly momentum.
 
+### Week 7 Summary
+
+This week marked my first hands-on experience actually running compute resources in the cloud.
+Building directly on my AWS CLI foundation from Week 6, I focused on learning the EC2 lifecycle — from creating key pairs and network access rules to launching and terminating real servers through the command line.
+It was a major step forward in understanding how infrastructure automation works end-to-end.
+
+#### Wins
+
+- Created a secure SSH key pair (my-week7-key.pem) and applied proper permissions for remote access.
+- Configured networking resources via CLI: default VPC, subnet, and a security group restricted to my current IP for SSH (port 22).
+- Retrieved the latest Ubuntu 22.04 LTS AMI using the Canonical owner ID and verified Free Tier eligibility.
+- Launched a t3.micro EC2 instance fully through the AWS CLI (no console).
+- Learned to handle AWS CLI paginated output (less) and disable it using AWS_PAGER="".
+- Successfully listed all running instances, identified duplicates, and terminated extras to stay within Free Tier.
+- Understood how AMI, instance type, key pair, security group, and region interconnect.
+- Practiced verifying instance states (pending, running, shutting-down, terminated) using describe-instances.
+
+#### Misses
+
+- Initial confusion between x86_64 and arm64 AMIs led to a few invalid instance-type errors.
+- Needed multiple attempts to get the key-pair file permissions correct (chmod 400).
+- Spent extra time troubleshooting “pager colon” prompts before learning about the built-in viewer.
+- Didn’t yet progress to connecting via SSH or running automation scripts inside the instance.
+
+#### Blockers
+
+- Encountered Free Tier eligibility errors (InvalidParameterCombination) due to mismatched AMI architectures — resolved by switching to t3.micro.
+- Minor confusion over CLI syntax (accidentally using angle brackets < > in terminate commands).
+- Temporary “Permission denied” errors while writing the .pem key file — fixed by saving under ~/.ssh/.
+
+### Plan for Week 8
+
+- SSH into the running EC2 instance using the generated key pair.
+- Run a “Hello-from-Cloud” shell script remotely to verify connection and automation.
+- Learn how to install software and configure the instance from the terminal.
+- Begin simple provisioning automation (copying and executing scripts remotely).
+- Push updated notes and Week 7 summary to GitHub, keeping documentation consistent.
+
+#### Reflection
+
+This week represented the moment where cloud theory became tangible.
+Actually launching and managing servers through the AWS CLI built huge confidence and clarified how cloud infrastructure behaves behind the scenes.
+The technical setbacks (AMI types, permissions, paged output) became valuable lessons in debugging cloud environments.
+I now understand the complete journey of deploying, inspecting, and safely cleaning up compute resources — a key milestone in becoming fluent with real-world DevOps workflows.
+
 
 ---
 
